@@ -19,7 +19,7 @@ public class SeparatorTest {
     public void 메뉴_이름_분리_테스트(){
         Separator separator = new Separator();
         String data = "해산물파스타-2";
-        String name = separator.splitByName();
+        String name = separator.splitByName(data);
 
         Assertions.assertThat(name).isEqualTo("해산물파스타");
     }
@@ -28,9 +28,9 @@ public class SeparatorTest {
     public void 메뉴_개수_분리_테스트(){
         Separator separator = new Separator();
         String data = "해산물파스타-2";
-        int quantity = separator.splitByQuantity(data);
+        String quantity = separator.splitByQuantity(data);
 
-        Assertions.assertThat(quantity).isEqualTo(2);
+        Assertions.assertThat(quantity).isEqualTo("2");
     }
 
 }
