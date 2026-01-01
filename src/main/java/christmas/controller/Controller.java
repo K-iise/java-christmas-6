@@ -28,7 +28,6 @@ public class Controller {
         String menu = inputView.readMenu();
         Parser parser = new Parser();
         HashMap<String, Integer> menuMap = parser.splitMenu(menu);
-        validator.validateMenuName(menuMap);
 
         // 주문 정보 정리
         Order order = new Order(Integer.parseInt(date), menuMap);
