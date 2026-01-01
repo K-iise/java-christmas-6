@@ -7,17 +7,21 @@ import java.util.Set;
 
 public class Validator {
 
-    private Separator separator;
+    private final Separator separator;
+
+    public Validator(Separator separator) {
+        this.separator = separator;
+    }
 
     public void validateDateNumber(String date){
         try {
             int num = Integer.parseInt(date);
 
             if (!(num >= 1 && num <= 31)){
-                throw new NumberFormatException();
+                throw new IllegalArgumentException();
             }
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
     }
 
@@ -31,7 +35,7 @@ public class Validator {
         validateDuplication(menus);
     }
 
-    public void validateSingleMenuName(String menu){
+    private void validateSingleMenuName(String menu){
         validateHyphenFormat(menu);
         validateMenuName(menu);
         validateMenuQuantity(menu);
@@ -65,7 +69,7 @@ public class Validator {
         }
     }
 
-    public void validateDuplication(String[] menus){
+    private void validateDuplication(String[] menus){
         Set<String> menuName = new HashSet<>();
         for (String name : menus){
             menuName.add(name);
