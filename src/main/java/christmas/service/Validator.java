@@ -16,6 +16,18 @@ public class Validator {
         }
     }
 
+    public void validateMenuFormat(String menu){
+        Separator separator = new Separator();
+        String[] detail = separator.splitByComma(menu);
+
+        for (String main : detail){
+            if (!main.contains("-")){
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
+        }
+
+    }
+
     public void validateMenuName(HashMap<String, Integer> menu){
         for (String name : menu.keySet()){
             if (Menu.valueOf(name) == Menu.MISS){
