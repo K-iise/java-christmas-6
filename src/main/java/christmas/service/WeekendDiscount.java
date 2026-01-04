@@ -26,6 +26,6 @@ public class WeekendDiscount implements DiscountPolicy {
 
     private boolean isWeekend(Order order) {
         int dayOfWeekend = order.getDate() % 7;
-        return dayOfWeekend != 1 && dayOfWeekend != 2;
+        return dayOfWeekend == 1 || dayOfWeekend == 2;
     }
 }
