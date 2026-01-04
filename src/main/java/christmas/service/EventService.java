@@ -14,7 +14,7 @@ public class EventService {
         if (order.getPrice() >= 10000) {
             flag = true;
         }
-        
+
         int weekday = weekdayDiscount(order);
         int weekend = weekendDiscount(order);
         int christmas = christmasDiscount(order);
@@ -30,7 +30,8 @@ public class EventService {
                 List.of(3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 31));
         if (weekday.contains(date)) {
             for (String name : order.getMenu().keySet()) {
-                if (Menu.getCategory(name).equals("디저트")) {
+                Menu menu = Menu.fromName(name);
+                if (menu.getCategory().equals("디저트")) {
                     discount += order.getMenu().get(name) * 2023;
                     order.addDiscount(order.getMenu().get(name) * 2023);
                 }
@@ -49,7 +50,8 @@ public class EventService {
 
         if (weekend.contains(date)) {
             for (String name : order.getMenu().keySet()) {
-                if (Menu.getCategory(name).equals("메인")) {
+                Menu menu = Menu.fromName(name);
+                if (menu.getCategory().equals("메인")) {
                     discount += order.getMenu().get(name) * 2023;
                     order.addDiscount(order.getMenu().get(name) * 2023);
                 }

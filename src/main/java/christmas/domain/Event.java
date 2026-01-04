@@ -1,7 +1,10 @@
 package christmas.domain;
 
+import java.util.HashMap;
+
 public class Event {
 
+    private HashMap<String, Integer> benefit;
     private final int weekdayDiscount;
     private final int weekendDiscount;
     private final int christmasDiscount;

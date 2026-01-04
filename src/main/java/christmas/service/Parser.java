@@ -3,18 +3,17 @@ package christmas.service;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import java.util.HashMap;
-import javax.swing.ImageIcon;
 
 public class Parser {
 
-    public Order purchaseOrder(String date, String menu){
+    public Order purchaseOrder(String date, String menu) {
         int dt = Integer.parseInt(date);
         HashMap<String, Integer> menuMap = splitMenu(menu);
         int price = calculatePrice(menuMap);
         return new Order(dt, price, menuMap);
     }
 
-    private HashMap<String, Integer> splitMenu(String menu){
+    private HashMap<String, Integer> splitMenu(String menu) {
         HashMap<String, Integer> map = new HashMap<>();
 
         String[] sp = menu.split(",");
@@ -29,11 +28,12 @@ public class Parser {
         return map;
     }
 
-    private int calculatePrice(HashMap<String, Integer> map){
+    private int calculatePrice(HashMap<String, Integer> map) {
         int result = 0;
 
-        for (String name : map.keySet()){
-            result += Menu.getPrice(name) * map.get(name);
+        for (String name : map.keySet()) {
+            Menu menu = Menu.fromName(name);
+            result += menu.getPrice() * map.get(name);
         }
         return result;
     }
